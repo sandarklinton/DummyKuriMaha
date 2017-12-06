@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DummyKuriMaha.Model.KurikulumModel;
 import com.example.DummyKuriMaha.Model.MahasiswaModel;
+import com.example.DummyKuriMaha.Model.ResponseErrorModel;
+import com.example.DummyKuriMaha.Model.ResponseModel;
 import com.example.DummyKuriMaha.Services.DummyServices;
 
 
@@ -23,20 +25,28 @@ public class DummyController {
 	DummyServices DummyDAO;
 	
 	@RequestMapping("/getAllMahasiswa")
-	public List<MahasiswaModel> getAllMahasiswa (Model model) {
+	public Object getAllMahasiswa (Model model) {
 		
 		List<MahasiswaModel> mahasiswa= DummyDAO.getAllMahasiswa();
-        model.addAttribute ("mahasiswa", mahasiswa);
-
-        return mahasiswa;
+		
+		if(mahasiswa.size() != 0) {
+			return new ResponseModel("200","success", mahasiswa);
+		}else {
+			return new ResponseErrorModel("404", "Mahasiswa not found");
+		}
+   
 	}
 	
 	@RequestMapping("/getAllKurikulum")
-	public List<KurikulumModel> getAllKurikulum (Model model) {
+	public Object getAllKurikulum (Model model) {
 		
 		List<KurikulumModel> kurikulum= DummyDAO.getAllKurikulum();
-        model.addAttribute ("kurikulum", kurikulum);
+		if(kurikulum.size() != 0) {
+			return new ResponseModel("200","success", kurikulum);
+		}else {
+			return new ResponseErrorModel("404", "Kurikulum not found");
+		}
 
-        return kurikulum;
+
 	}
 }
