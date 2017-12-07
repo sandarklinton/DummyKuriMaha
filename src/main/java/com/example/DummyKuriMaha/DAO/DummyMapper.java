@@ -23,21 +23,25 @@ public interface DummyMapper {
 
 	@Select("select * from mahasiswa")
 	@Results(value= {
-//    		@Result(property="students", column="id_course",javaType = List.class, many=@Many(select="selectStudentsCourse")),
-			@Result(property="biodata", column="id", one=@One(select="selectBiodata")),
-			@Result(property="biodata_Ortu", column="id", one=@One(select="selectBiodataOrtu")),
-			@Result(property="identitas", column="id", one=@One(select="selectIdentitas"))
+			@Result(property="namaLengkap", column="nama_lengkap"),
+			@Result(property="tahunMasuk", column="tahun_masuk"),
+			@Result(property="kodeKurikulum", column="kode_kurikulum"),
+			@Result(property="idUniv", column="id_univ"),
+			@Result(property="idFakultas", column="id_fakultas"),
+			@Result(property="idProdi", column="id_prodi"),
+
     })
 	List<MahasiswaModel> getAllMahasiswa();
 
-	@Select("select * from biodata_mahasiswa where id_user_mhs = #{id}")
-	BiodataModel selectBiodata(@Param("id") int id);
-	
-	@Select("select * from biodata_ortu where id_user_mhs = #{id}")
-	BiodataOrtuModel selectBiodataOrtu(@Param("id") int id);
-	
-	@Select("select * from identitas_mahasiswa where id_user_mhs = #{id}")
-	IdentitasModel selectIdentitas(@Param("id") int id);
+//	@Select("select * from biodata_mahasiswa where id_user_mhs = #{id}")
+//	BiodataModel selectBiodata(@Param("id") int id);
+//	
+//	@Select("select * from biodata_ortu where id_user_mhs = #{id}")
+//	BiodataOrtuModel selectBiodataOrtu(@Param("id") int id);
+//	
+//	@Select("select * from identitas_mahasiswa where id_user_mhs = #{id}")
+//	IdentitasModel selectIdentitas(@Param("id") int id);
+//	
 	
 	@Select("select * from kurikulum")
 	@Results(value= {

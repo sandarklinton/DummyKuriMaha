@@ -28,12 +28,12 @@ public class DummyController {
 	public Object getAllMahasiswa (Model model) {
 		
 		List<MahasiswaModel> mahasiswa= DummyDAO.getAllMahasiswa();
-		
-		if(mahasiswa.size() != 0) {
-			return new ResponseModel("200","success", mahasiswa);
-		}else {
-			return new ResponseErrorModel("404", "Mahasiswa not found");
-		}
+		return mahasiswa;
+//		if(mahasiswa.size() != 0) {
+//			return new ResponseModel("200","success", mahasiswa);
+//		}else {
+//			return new ResponseErrorModel("404", "Mahasiswa not found");
+//		}
    
 	}
 	
