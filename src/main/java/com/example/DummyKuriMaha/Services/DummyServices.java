@@ -11,5 +11,7 @@ public interface DummyServices {
 	List<MahasiswaModel> getAllMahasiswa();
 
 	List<KurikulumModel> getAllKurikulum();
+
+	KurikulumModel getKurikulumByKode(String kodeKurikulum);
 	
 }

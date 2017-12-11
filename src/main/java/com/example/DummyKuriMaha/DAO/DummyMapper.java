@@ -43,6 +43,18 @@ public interface DummyMapper {
 //	IdentitasModel selectIdentitas(@Param("id") int id);
 //	
 	
+	@Select("select * from kurikulum where kode_kurikulum = #{kodeKurikulum}")
+	@Results(value= {
+			@Result(property="idKurikulum", column="id"),
+			@Result(property="kodeKurikulum", column="kode_kurikulum"),
+			@Result(property="namaKurikulum", column="nama_kurikulum"),
+			@Result(property="idUniversitas", column="id_universitas"),
+			@Result(property="idFakultas", column="id_fakultas"),
+			@Result(property="idProdi", column="id_prodi"),
+    		@Result(property="listMataKuliah", column="id",javaType = List.class, many=@Many(select="getAllMatakuliah"))
+    })
+	KurikulumModel getKurikulumByKode(@Param("kodeKurikulum") String kodeKurikulum);
+	
 	@Select("select * from kurikulum")
 	@Results(value= {
 			@Result(property="idKurikulum", column="id"),

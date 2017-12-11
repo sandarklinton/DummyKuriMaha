@@ -30,4 +30,10 @@ public class DummyServicesDatabase implements DummyServices{
 		return listing;
 	}
 
+	@Override
+	public KurikulumModel getKurikulumByKode(String kodeKurikulum) {
+		// TODO Auto-generated method stub
+		return dummyMapper.getKurikulumByKode(kodeKurikulum);
+	}
+
 }

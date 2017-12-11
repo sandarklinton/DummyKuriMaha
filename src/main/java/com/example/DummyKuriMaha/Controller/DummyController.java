@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DummyKuriMaha.Model.KurikulumModel;
@@ -25,7 +26,7 @@ public class DummyController {
 	DummyServices DummyDAO;
 	
 	@RequestMapping("/getAllMahasiswa")
-	public Object getAllMahasiswa (Model model) {
+	public List<MahasiswaModel> getAllMahasiswa (Model model) {
 		
 		List<MahasiswaModel> mahasiswa= DummyDAO.getAllMahasiswa();
 		return mahasiswa;
@@ -46,7 +47,17 @@ public class DummyController {
 		}else {
 			return new ResponseErrorModel("404", "Kurikulum not found");
 		}
-
-
 	}
+	
+	@RequestMapping("/getKurikulumByKode")
+	public Object getAllKurikulum (Model model, @RequestParam(value = "kodeKurikulum", required = false) String kodeKurikulum) {
+		
+		KurikulumModel kurikulum= DummyDAO.getKurikulumByKode(kodeKurikulum);
+		if(kurikulum != null) {
+			return new ResponseModel("200","success", kurikulum);
+		}else {
+			return new ResponseErrorModel("404", "Kurikulum not found");
+		}
+	}
+	
 }
